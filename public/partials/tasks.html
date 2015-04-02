@@ -1,0 +1,18 @@
+<div class= "tasksMain" ng-controller="TaskController">
+	<div>
+		<h1>Tasks</h1>
+	</div>
+	<form id = "whichTasks">
+		<input type="radio" name="all" ng-model="completed" value="false" checked>All
+		<input type="radio" name="all" ng-model="completed" value="false">Pending
+		<input type="radio" name="all" ng-model="completed" value="true">Completed
+	</form>
+	<ul id="listOfTasks">
+		<li ng-repeat="task in tasks">
+		<div>
+			<h5>{{task.name}}</h5>
+			<h5>{{task.assignedUserName}}</h5>
+		</div>
+		</li>
+	</ul>
+</div>

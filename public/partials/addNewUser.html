@@ -1,0 +1,16 @@
+<div ng-controller="UserController">
+
+	<form name = "addUserForm" novalidate>
+		
+			<input ng-model = "newUserName" name="username" required>
+		<span style="color:red" ng-show="addUserForm.username.$dirty && addUserForm.username.$invalid">
+		<span ng-show="addUserForm.username.$error.required">Username is required.</span>
+		</span>
+		<input name="email" ng-model="newUserEmail" required>
+		<span style="color:red" ng-show="addUserForm.email.$dirty && addUserForm.email.$invalid">
+			<span ng-show="addUserForm.email.$error.required">Email is required.</span>
+		</span>
+		<a class="button" ng-click="addUser()" ng-disabled="addUserForm.username.$dirty && addUserForm.username.$invalid ||  
+addUserForm.email.$dirty && addUserForm.email.$invalid">Add User</a>
+	</form>
+</div>

@@ -1,24 +1,26 @@
-// var demoApp = angular.module('demoApp', ['demoControllers']);
 
-var demoApp = angular.module('demoApp', ['ngRoute', 'demoControllers', 'demoServices']);
-
-demoApp.config(['$routeProvider', function($routeProvider) {
+var taskManagerApp = angular.module('taskManagerApp', ['ngRoute', 'taskManagerControllers', 'taskManagerServices']);
+taskManagerApp.config(['$routeProvider', function($routeProvider){
   $routeProvider.
-    when('/firstview', {
-    templateUrl: 'partials/firstview.html',
-    controller: 'FirstController'
+  when('/users', {
+    templateUrl: 'partials/users.html',
+    controller: 'UserController'
   }).
-  when('/secondview', {
-    templateUrl: 'partials/secondview.html',
-    controller: 'SecondController'
+  when('/tasks', {
+    templateUrl: 'partials/tasks.html',
+    controller: 'TaskController'
   }).
   when('/settings', {
     templateUrl: 'partials/settings.html',
     controller: 'SettingsController'
   }).
-  when('/llamalist', {
-    templateUrl: 'partials/llamalist.html',
-    controller: 'LlamaListController'
+  when('/addUser', {
+    templateUrl: 'partials/addNewUser.html',
+    controller: 'UserController'
+  }).
+  when('/userDetails:id',{
+    templateUrl: 'partials/userDetails.html',
+    controller: 'UserController'
   }).
   otherwise({
     redirectTo: '/settings'
