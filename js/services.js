@@ -18,8 +18,9 @@ angular.module('taskManagerServices', [])
                 return $http.get(baseUrl+'/api/users' + paramString);
             }
         Users.postUser = function(user){
+
             return $http.post(baseUrl + '/api/users' ,user);
-        }
+        };
         Users.getUser = function(id){
                 return $http.get(baseUrl + '/api/users' + id);
         }
@@ -36,8 +37,9 @@ angular.module('taskManagerServices', [])
             return $http.get(baseUrl + '/api/tasks' + paramString);
         }
         Tasks.postTask = function(task){
+      
             return $http.post(baseUrl + '/api/tasks', task);
-        }
+        };
         Tasks.deleteTask = function(id){
             return $http.delete(baseUrl + '/api/tasks/' + id);
         }

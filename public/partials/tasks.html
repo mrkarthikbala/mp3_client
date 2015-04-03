@@ -8,18 +8,33 @@
 			<input type="radio" name="all" ng-model="completed" value="false">Pending
 			<input type="radio" name="all" ng-model="completed" value="true">Completed
 		</form>
+
 		<a class="button" ng-click="getNext(-10)">Previous</a>
 		<a class="button" ng-click="getNext(10)">Next</a>
 		<a class="button" href="#/addTask">Add Task</a>
 
+	<div>
+	<a href="#" class="button" data-dropdown="hover1" data-options="is_hover:true; hover_timeout:5000">Has Hover Dropdown</a>
+
+	<ul id="hover1" class="f-dropdown" data-dropdown-content>
+	  <li>Option 1</li>
+	  <li>Option 2</li>
+	  <li>Option 3</li>
+	</ul>
+	</div>
+		<form id = "ascDesc">
+			<input type="radio" name="ascendingDescending" ng-model="ascDesc" value="true" checked>Ascending
+			<input type="radio" name="ascendingDescending" ng-model="ascDesc" value="false">Descending
+		</form>
+
+
 	</div>
 	<ul id="listOfTasks">
 		<li ng-repeat="task in tasks">
-		<div>
-			<h5>{{task.name}}</h5>
-			<h5>{{task.assignedUserName}}</h5>
+			<a href="#/taskDetails{{task._id}}">{{task.name}}</a>
+			{{task.assignedUserName}}
 			<a class="button" ng-click="deleteTask(task._id)">Delete</a>
-		</div>
+		
 		</li>
 	</ul>
 </div>

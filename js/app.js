@@ -26,6 +26,10 @@ taskManagerApp.config(['$routeProvider', function($routeProvider){
     templateUrl: 'partials/addTask.html',
     controller: 'TaskController'
   }).
+  when('/taskDetails:id', {
+    templateUrl: 'partials/taskDetails.html',
+    controller: 'TaskController'
+  }).
   otherwise({
     redirectTo: '/settings'
   });
