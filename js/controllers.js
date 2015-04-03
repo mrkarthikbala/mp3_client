@@ -36,9 +36,31 @@ taskManagerControllers.controller('UserController', ['$scope','$http', 'Users', 
 
 taskManagerControllers.controller('TaskController', ['$scope', '$http', 'Tasks', function($scope, $http, Tasks){
   $scope.skip=0;
+  $scope.newTaskName = "Name";
+
+  $scope.addTask = function(){
+    if ($scope.newTaskName == "Name"){
+      alert("Please enter a valid task name");
+      return;
+    }
+    Tasks.postTask({"name" : $scope.newTaskName, "description": $scope.newTaskDescription, "deadline" : $scope.newTaskDeadline}).success(function(data){
+      alert("Posted.");
+    });
+  }
+  $scope.getNext = function(num){
+    $scope.skip += num;
+    if ($scope.skip < 0) $scope.skip = 0;
+    $scope.getTasks();
+  }
+  //where={completed:"+ false+ "}&
   $scope.getTasks = function(id){
-    Tasks.getTasks("?where={'completed':"+ false+ "}&select={\"name\": 1, \"assignedUserName\": 1 }&skip="+ $scope.skip + "&limit=10").success(function(data){
+    Tasks.getTasks("?select={\"name\": 1, \"assignedUserName\": 1 }&skip="+ $scope.skip + "&limit=10").success(function(data){
       $scope.tasks = data.data;
+    });
+  };
+  $scope.deleteTask = function(id){
+    Tasks.deleteTask(id).success(function(id){
+      $scope.getTasks();
     });
   };
 

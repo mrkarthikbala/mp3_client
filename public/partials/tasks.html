@@ -2,16 +2,23 @@
 	<div>
 		<h1>Tasks</h1>
 	</div>
-	<form id = "whichTasks">
-		<input type="radio" name="all" ng-model="completed" value="false" checked>All
-		<input type="radio" name="all" ng-model="completed" value="false">Pending
-		<input type="radio" name="all" ng-model="completed" value="true">Completed
-	</form>
+	<div id = "taskControl">
+		<form id = "whichTasks">
+			<input type="radio" name="all" ng-model="completed" value="false" checked>All
+			<input type="radio" name="all" ng-model="completed" value="false">Pending
+			<input type="radio" name="all" ng-model="completed" value="true">Completed
+		</form>
+		<a class="button" ng-click="getNext(-10)">Previous</a>
+		<a class="button" ng-click="getNext(10)">Next</a>
+		<a class="button" href="#/addTask">Add Task</a>
+
+	</div>
 	<ul id="listOfTasks">
 		<li ng-repeat="task in tasks">
 		<div>
 			<h5>{{task.name}}</h5>
 			<h5>{{task.assignedUserName}}</h5>
+			<a class="button" ng-click="deleteTask(task._id)">Delete</a>
 		</div>
 		</li>
 	</ul>

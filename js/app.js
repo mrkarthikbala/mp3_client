@@ -1,4 +1,4 @@
-
+//add '720kb.datepicker'
 var taskManagerApp = angular.module('taskManagerApp', ['ngRoute', 'taskManagerControllers', 'taskManagerServices']);
 taskManagerApp.config(['$routeProvider', function($routeProvider){
   $routeProvider.
@@ -21,6 +21,10 @@ taskManagerApp.config(['$routeProvider', function($routeProvider){
   when('/userDetails:id',{
     templateUrl: 'partials/userDetails.html',
     controller: 'UserController'
+  }).
+  when('/addTask',{
+    templateUrl: 'partials/addTask.html',
+    controller: 'TaskController'
   }).
   otherwise({
     redirectTo: '/settings'

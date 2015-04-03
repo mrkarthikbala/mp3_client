@@ -35,6 +35,12 @@ angular.module('taskManagerServices', [])
         Tasks.getTasks = function(paramString){
             return $http.get(baseUrl + '/api/tasks' + paramString);
         }
+        Tasks.postTask = function(task){
+            return $http.post(baseUrl + '/api/tasks', task);
+        }
+        Tasks.deleteTask = function(id){
+            return $http.delete(baseUrl + '/api/tasks/' + id);
+        }
         return Tasks;
     });
     //if you can't work this try a service
