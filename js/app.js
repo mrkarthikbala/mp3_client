@@ -1,5 +1,6 @@
-//add '720kb.datepicker'
+//add '720kb.datepicker' into list?
 var taskManagerApp = angular.module('taskManagerApp', ['ngRoute', 'taskManagerControllers', 'taskManagerServices']);
+
 taskManagerApp.config(['$routeProvider', function($routeProvider){
   $routeProvider.
   when('/users', {
@@ -20,7 +21,7 @@ taskManagerApp.config(['$routeProvider', function($routeProvider){
   }).
   when('/userDetails:id',{
     templateUrl: 'partials/userDetails.html',
-    controller: 'UserController'
+    controller: 'UserDetailController'
   }).
   when('/addTask',{
     templateUrl: 'partials/addTask.html',

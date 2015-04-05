@@ -1,5 +1,6 @@
 
 var taskManagerControllers = angular.module('taskManagerControllers', []);
+ 
 
 taskManagerControllers.controller('UserController', ['$scope','$http', 'Users', function($scope, $http, Users){
 
@@ -23,7 +24,10 @@ taskManagerControllers.controller('UserController', ['$scope','$http', 'Users', 
         alert("Please enter a valid username and email");
         return;
       }
-      Users.postUser({"name":$scope.newUserName, "email": $scope.newUserEmail}).success(function(data){
+      var a = $scope.newUserName;
+      var b = $scope.newUserEmail;
+      var obj = {"name":a, "email": b};
+      Users.postUser(obj).success(function(data){
       alert("User " + data.data.name  + " has been added!");
     }).error(function(data){
       alert("Please enter a different email.");
@@ -34,9 +38,74 @@ taskManagerControllers.controller('UserController', ['$scope','$http', 'Users', 
 }]);
 
 
+taskManagerControllers.controller('UserDetailController', ['$scope', '$routeParams', '$http', 'Users','Tasks', function($scope, $routeParams, $http, Users,Tasks){
+    //NO TASKS CASE???
+    //multiple tasks case
+    Users.getUser($routeParams.id).success(function(data){
+      $scope.user = data.data;
+
+      var hardQuotes = "";
+      for (var i = 0; i < $scope.user.pendingTasks.length; i++){
+        hardQuotes += "\"" + $scope.user.pendingTasks[i] + "\",";
+      }
+      //edge case no pending tasks
+      var query = '?where={\"_id\": {\"$in\": ['+hardQuotes.substring(0, hardQuotes.length-1)+
+      '] }}';
+      
+     Tasks.getTasks(query).success(function(data){
+         $scope.pendingTasks = data.data;
+    });
+    });
+  
+    $scope.markCompleted = function(id){
+        var task;
+        for (var i = 0; i < $scope.pendingTasks.length; i++){
+          if ($scope.pendingTasks[i]._id === id){
+            task = $scope.pendingTasks[i];
+            task.completed = true;
+            $scope.pendingTasks.splice(i, 1);
+          }
+        }
+        Tasks.updateTask(task).success(function(){
+          alert("Good job!");
+        });
+        var user = $scope.user;
+        for (var i = 0; i < user.pendingTasks.length; i++){
+          if (user.pendingTasks[i] == id){
+           user.pendingTasks.splice(i, 1);
+           alert("hi");}
+        }
+        Users.updateUser(user);
+
+    };
+
+    $scope.loadCompletedTasks = function(name){
+      //SELECT * FrOM TASKS WHERE assignedUserName = name
+      Tasks.getTasks("?where={\"assignedUserName\":" +"\""+ name + "\""+"}").success(function(data){
+        $scope.completedTasks = data.data;
+      });
+    };
+
+}]);
+
 taskManagerControllers.controller('TaskController', ['$scope', '$http', 'Tasks', function($scope, $http, Tasks){
   $scope.skip=0;
   $scope.newTaskName = "Name";
+  $scope.completed="pending";
+
+    $scope.$watch('completed', function() {
+       $scope.getTasks();
+   });
+  var whichTasks = function(){  //returns query based on value of $scope.completed
+
+    if ($scope.completed ==="pending"){
+      return "?where={\"completed\": false}&select={\"name\": 1, \"assignedUserName\": 1 }&skip="+ $scope.skip + "&limit=10";
+    } 
+    if ($scope.completed ==="completed"){
+      return "?where={\"completed\": true}&select={\"name\": 1, \"assignedUserName\": 1 }&skip="+ $scope.skip + "&limit=10";
+    }
+    return "?select={\"name\": 1, \"assignedUserName\": 1 }&skip="+ $scope.skip + "&limit=10";
+  };
 
   $scope.addTask = function(){
     if ($scope.newTaskName == "Name"){
@@ -54,7 +123,8 @@ taskManagerControllers.controller('TaskController', ['$scope', '$http', 'Tasks',
   }
   //where={completed:"+ false+ "}&
   $scope.getTasks = function(id){
-    Tasks.getTasks("?select={\"name\": 1, \"assignedUserName\": 1 }&skip="+ $scope.skip + "&limit=10").success(function(data){
+    var query = whichTasks();
+    Tasks.getTasks(query).success(function(data){
       $scope.tasks = data.data;
     });
   };
@@ -66,6 +136,8 @@ taskManagerControllers.controller('TaskController', ['$scope', '$http', 'Tasks',
 
   $scope.getTasks();
 }]);
+
+
 taskManagerControllers.controller('SettingsController', ['$scope' , '$window' , function($scope, $window) {
   $scope.url = $window.sessionStorage.baseurl;
 

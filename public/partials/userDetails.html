@@ -1,5 +1,21 @@
-<div ng-controller= "UserController">
+<div ng-controller= "UserDetailController">
 	<div>
-		This is the user details view.
+		{{user.name}}
+
+		{{user.email}}
+
+		<ul>
+			<li ng-repeat="task in pendingTasks">
+				<a href="#/taskDetails{{task._id}}">{{task.name}}</a>
+				<a class = "button" ng-click="markCompleted(task._id)">Mark as Completed</a>
+			</li>
+		</ul>
+
+		<a class = "button" ng-click="loadCompletedTasks(user.name)">Load Completed Tasks</a>
+		<ul>
+			<li ng-repeat="task in completedTasks">
+				<a href="#/taskDetails{{task._id}}">{{task.name}}</a>
+			</li>
+		</ul>
 	</div>
 </div>

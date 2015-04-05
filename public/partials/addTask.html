@@ -7,9 +7,11 @@
 			<span ng-show="addTaskForm.taskName.$error.required">Username is required.</span>
 		</span>
 		<input name="description" ng-model="newTaskDescription">
-		<datepicker date-format="yyyy-MM-dd" selector="form-control" date-set="2018/07/14">
-        	<input ng-model="newTaskDeadline" type="text" name="taskDeadline" required>
-      	</datepicker>
+
+		  <datepicker>
+        <input ng-model="date" type="text">
+      </datepicker>
+      	
       	<span style="color:red" ng-show="addTaskForm.taskDeadline.$dirty && addTaskForm.taskDeadline.$invalid">
       		<span ng-show="addTaskForm.taskDeadline.$error.required">Deadline is required.</span>
       	</span>
