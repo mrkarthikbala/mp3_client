@@ -1,5 +1,5 @@
 //add '720kb.datepicker' into list?
-var taskManagerApp = angular.module('taskManagerApp', ['ngRoute', 'taskManagerControllers', 'taskManagerServices']);
+var taskManagerApp = angular.module('taskManagerApp', ['ngRoute', 'taskManagerControllers', 'taskManagerServices', '720kb.datepicker']);
 
 taskManagerApp.config(['$routeProvider', function($routeProvider){
   $routeProvider.
