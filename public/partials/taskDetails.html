@@ -1,3 +1,16 @@
-<div ng-controller = "TaskController">
-	This is the task details view.
+<div ng-controller = "TaskDetailController">
+
+	<div>
+		<a class="button" href = "#/editTask{{task._id}}">Edit Task</a>
+		<h3>	{{task.name}} </h3>
+
+		<h3>	{{task.description}}	</h3>
+		<h3>{{task.assignedUserName}}</h3>
+		<h3>{{task.dateCreated}}</h3>
+		<div>
+			<h3>{{task.completed}}</h3>
+			<a class="button" ng-click="changeCompletionStatus()">{{Complete}}</a>
+		</div>
+		<h3>{{task.deadline}}</h3>
+	</div>
 </div>

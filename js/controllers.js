@@ -39,10 +39,11 @@ taskManagerControllers.controller('UserController', ['$scope','$http', 'Users', 
 
 
 taskManagerControllers.controller('UserDetailController', ['$scope', '$routeParams', '$http', 'Users','Tasks', function($scope, $routeParams, $http, Users,Tasks){
-    //NO TASKS CASE???
-    //multiple tasks case
+
     Users.getUser($routeParams.id).success(function(data){
       $scope.user = data.data;
+
+      //SHOULD BE QUERYING TASKS WHERE username = my name
 
       var hardQuotes = "";
       for (var i = 0; i < $scope.user.pendingTasks.length; i++){
@@ -84,10 +85,31 @@ taskManagerControllers.controller('UserDetailController', ['$scope', '$routePara
       Tasks.getTasks("?where={\"assignedUserName\":" +"\""+ name + "\""+"}").success(function(data){
         $scope.completedTasks = data.data;
       });
+
     };
 
 }]);
 
+taskManagerControllers.controller('TaskDetailController', ['$scope', '$routeParams', '$http', 'Users','Tasks', function($scope, $routeParams, $http, Users,Tasks){
+  var completionButton = function(){
+    if ($scope.task.completed == true){
+      $scope.Complete = "Mark Uncompleted";
+    }
+    else {
+      $scope.Complete = "Mark Completed";
+    }
+  }
+  Tasks.getTask($routeParams.id).success(function(data){
+    $scope.task = data.data;
+    completionButton();
+  });
+
+  $scope.changeCompletionStatus = function(){
+    $scope.task.completed = !($scope.task.completed);
+    completionButton();
+    Tasks.updateTask($scope.task);
+  };
+}]);
 taskManagerControllers.controller('TaskController', ['$scope', '$http', 'Tasks', function($scope, $http, Tasks){
   $scope.skip=0;
   $scope.newTaskName = "Name";

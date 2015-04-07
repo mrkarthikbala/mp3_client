@@ -39,6 +39,9 @@ angular.module('taskManagerServices', [])
         Tasks.getTasks = function(paramString){
             return $http.get(baseUrl + '/api/tasks' + paramString);
         }
+        Tasks.getTask = function(id){
+            return $http.get(baseUrl + '/api/tasks/' + id);
+        };
         Tasks.postTask = function(task){
       
             return $http.post(baseUrl + '/api/tasks', task);
