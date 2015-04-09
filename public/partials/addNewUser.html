@@ -2,10 +2,13 @@
 
 	<form name = "addUserForm" novalidate>
 		
+		Name <span style="color:red">*</span>
 			<input ng-model = "newUserName" name="username" required>
 		<span style="color:red" ng-show="addUserForm.username.$dirty && addUserForm.username.$invalid">
 		<span ng-show="addUserForm.username.$error.required">Username is required.</span>
 		</span>
+
+		Email <span style="color:red">*</span>
 		<input name="email" ng-model="newUserEmail" required>
 		<span style="color:red" ng-show="addUserForm.email.$dirty && addUserForm.email.$invalid">
 			<span ng-show="addUserForm.email.$error.required">Email is required.</span>

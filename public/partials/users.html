@@ -5,7 +5,7 @@
 		<li ng-repeat="user in users">
 		<a href = "#/userDetails{{user._id}}">{{user.name}}</a>
 		{{user.email}}
-		<a class="button" ng-click="deleteUser(user._id)">Delete User</a>
+		<a class="button" ng-click="deleteUser(user._id, user.name)">Delete User</a>
 		</li>
 		
 	</ul>

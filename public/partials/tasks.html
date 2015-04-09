@@ -9,20 +9,20 @@
 			<input type="radio" name="all" ng-model="completed" value="completed">Completed
 		</form>
 
-		<a class="button" ng-click="getNext(-10)">Previous</a>
-		<a class="button" ng-click="getNext(10)">Next</a>
+		<a class="button" ng-click="getNext(-10)" ng-disabled="skip==0">Previous</a>
+		<a class="button" ng-click="getNext(10)" ng-disabled="countTasks()">Next</a>
 		<a class="button" href="#/addTask">Add Task</a>
 
-<a data-dropdown="drop1" aria-controls="drop1" aria-expanded="false">Has Dropdown</a>
-<ul id="drop1" class="f-dropdown" data-dropdown-content aria-hidden="true" >
-  <li><a href="#">This is a link</a></li>
-  <li><a href="#">This is another</a></li>
-  <li><a href="#">Yet another</a></li>
-</ul>
+		<select ng-model="sortBy">
+ 			<option value="sortByName">Name</option>
+  			<option value="sortByUserName">Assigned User Name</option>
+  			<option value="sortByDateCreated">Date Created</option>
+  			<option value="sortByDeadline">Deadline</option>
+		</select>
 
 		<form id = "ascDesc">
-			<input type="radio" name="ascendingDescending" ng-model="ascDesc" value="true" checked>Ascending
-			<input type="radio" name="ascendingDescending" ng-model="ascDesc" value="false">Descending
+			<input type="radio" name="ascendingDescending" ng-model="ascendingOrder" value="true" checked>Ascending
+			<input type="radio" name="ascendingDescending" ng-model="ascendingOrder" value="false">Descending
 		</form>
 
 

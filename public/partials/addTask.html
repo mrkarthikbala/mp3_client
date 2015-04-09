@@ -4,19 +4,25 @@
 		
 			<input ng-model = "newTaskName" name="taskName" required>
 		<span style="color:red" ng-show="addTaskForm.taskName.$dirty && addTaskForm.taskName.$invalid">
-			<span ng-show="addTaskForm.taskName.$error.required">Username is required.</span>
+			<span ng-show="addTaskForm.taskName.$error.required">Task Name is required.</span>
 		</span>
+
 		<input name="description" ng-model="newTaskDescription">
 
+		//make mandatory
 	 <datepicker>
-        <input ng-model="date" type="text">
+        <input ng-model="newTaskDeadline" type="text" name="taskDate" required>
       </datepicker>
+
       	
-      	<span style="color:red" ng-show="addTaskForm.taskDeadline.$dirty && addTaskForm.taskDeadline.$invalid">
+      	<span style="color:red" ng-show="addTaskForm.taskDate.$dirty && addTaskForm.taskDate.$invalid">
       		<span ng-show="addTaskForm.taskDeadline.$error.required">Deadline is required.</span>
       	</span>
 
-      	ADD ASSIGNED USER--what if the user added is not in the db : 0
+      	
+      <select ng-model="addAssignedUser" ng-options="user as user.name for user in possibleAssignedUsers"></select>
+
+      {{addAssignedUser.name}}
 		
 		<a class="button" ng-click="addTask()" ng-disabled="addTaskForm.taskName.$dirty && addTaskForm.taskName.$invalid">Add Task</a>
 	</form>
