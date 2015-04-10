@@ -187,8 +187,8 @@ taskManagerControllers.controller('TaskController', ['$scope', '$http','Users', 
       return;
     }
     //case assigned user is unassigned
-    if ($scope.addAssignedUser == undefined) alert("Please add an assigned user for this task.");
-    if ($scope.addAssignedUser.name == "Unassigned"){
+    
+    if ($scope.addAssignedUser.name == "Unassigned" || $scope.addAssignedUser == undefined){
       Tasks.postTask({"name" : $scope.newTaskName, "description": $scope.newTaskDescription, 
       "deadline" : $scope.newTaskDeadline, "completed" : false, "assignedUser" : "", "assignedUserName": "unassigned"
     }).success(function(data){
