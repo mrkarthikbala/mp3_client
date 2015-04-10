@@ -94,6 +94,8 @@ taskManagerControllers.controller('TaskDetailController', ['$scope', '$routePara
       $scope.possibleAssignedUsers = data.data;
       $scope.possibleAssignedUsers.unshift({name: "Unassigned"});
     });
+
+
   $scope.submit = function(){
     if ($scope.assigned){
       $scope.task.assignedUser = $scope.assigned._id;
@@ -105,13 +107,22 @@ taskManagerControllers.controller('TaskDetailController', ['$scope', '$routePara
   var completionButton = function(){
     if ($scope.task.completed == true){
       $scope.Complete = "Mark Uncompleted";
+      $scope.completed = "Yes";
     }
     else {
       $scope.Complete = "Mark Completed";
+      $scope.completed = "No";
     }
+
   }
   Tasks.getTask($routeParams.id).success(function(data){
     $scope.task = data.data;
+    if ($scope.task.completed == true){
+      $scope.completed ="Yes";
+    }
+    else {
+      $scope.completed = "No";
+    }
     completionButton();
   });
 

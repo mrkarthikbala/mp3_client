@@ -1,15 +1,16 @@
 <div ng-controller="TaskController">
 
 		<form name = "addTaskForm" novalidate>
-		
+		Name
 			<input ng-model = "newTaskName" name="taskName" required>
 		<span style="color:red" ng-show="addTaskForm.taskName.$dirty && addTaskForm.taskName.$invalid">
 			<span ng-show="addTaskForm.taskName.$error.required">Task Name is required.</span>
 		</span>
 
+		Description
 		<input name="description" ng-model="newTaskDescription">
 
-		//make mandatory
+	<h3>Click Below to select a deadline.</h3>
 	 <datepicker>
         <input ng-model="newTaskDeadline" type="text" name="taskDate" required>
       </datepicker>
@@ -19,7 +20,8 @@
       		<span ng-show="addTaskForm.taskDeadline.$error.required">Deadline is required.</span>
       	</span>
 
-      	
+
+      	<h3>Click below to assign a user</h3>
       <select ng-model="addAssignedUser" ng-options="user as user.name for user in possibleAssignedUsers"></select>
 
       {{addAssignedUser.name}}
