@@ -1,8 +1,11 @@
 <div ng-controller = "TaskDetailController">
 
 	<div>
-		<a class="button" href = "#/editTask{{task._id}}">Edit Task</a>
+	
+	<div style="margin-left: 10%; margin-right: 30%">
 		<h3>Name: 	{{task.name}} </h3>
+		<a id="editTaskButton" class="button" href = "#/editTask{{task._id}}">Edit Task</a>
+
 
 		<h3>Description: </h3>	<h5>{{task.description}}	</h5>
 		<h3>Assigned User: </h3> <h5>{{task.assignedUserName}}</h5>
@@ -12,5 +15,6 @@
 			<a class="button" ng-click="changeCompletionStatus()">{{Complete}}</a>
 		</div>
 		<h3>Deadline:</h3><h5> {{task.deadline}}</h5>
+	</div>
 	</div>
 </div>

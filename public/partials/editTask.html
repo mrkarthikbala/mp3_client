@@ -1,22 +1,25 @@
 <div ng-controller="TaskDetailController">
-	<h3>Name:</h3> 
-	<input ng-model = "task.name">
+	<div style="margin-left:10%; margin-right:30%">
+		<h3>Name:</h3> 
+		<input ng-model = "task.name">
 
-	<h3>Description: </h3>
-	<input ng-model = "task.description">
+		<h3>Description: </h3>
+		<input ng-model = "task.description">
 
-	<datepicker>
-        <input ng-model="task.deadline" type="text" name="taskDate" required>
-      </datepicker>
+		<h3>Deadline: </h3>
+		<datepicker>
+	        <input ng-model="task.deadline" type="text" name="taskDate" required>
+	      </datepicker>
 
-  <h3>Currently assigned user: {{task.assignedUserName}}</h3>
+	  <h3>Currently assigned user: {{task.assignedUserName}}</h3>
 
-  <h3>Assign another User to this task:</h3>
-  <select ng-model="assigned" ng-options="user as user.name for user in possibleAssignedUsers"></select>
-  	<form id = "editCompleted">
-		<input type="radio" name="all" ng-model="task.completed" value="false">Pending
-		<input type="radio" name="all" ng-model="task.completed" value="true">Completed
-	</form>
-	<a class="button" ng-click = "submit()">Submit</a>
+	  <h3>Assign another user to this task:</h3>
+	  <select ng-model="assigned" ng-options="user as user.name for user in possibleAssignedUsers"></select>
+	  	<form id = "editCompleted">
+			<input type="radio" name="all" ng-model="task.completed" value="false">Pending
+			<input type="radio" name="all" ng-model="task.completed" value="true">Completed
+		</form>
+		<a class="button" ng-click = "submit()">Submit</a>
 	
+	</div>
 </div>

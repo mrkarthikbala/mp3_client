@@ -1,5 +1,5 @@
 <div ng-controller="TaskController">
-
+<div style="margin-left:10%; margin-right:30%;">
 		<form name = "addTaskForm" novalidate>
 		Name<span style="color:red">*</span>
 			<input ng-model = "newTaskName" name="taskName" required>
@@ -28,4 +28,5 @@
 		
 		<a class="button" ng-click="addTask()" ng-disabled="addTaskForm.taskName.$dirty && addTaskForm.taskName.$invalid">Add Task</a>
 	</form>
+	</div>
 </div>

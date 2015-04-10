@@ -1,4 +1,5 @@
 <div class= "tasksMain" ng-controller="TaskController">
+	<div style="margin-left:10%; margin-right:30%">
 	<div>
 		<h1>Tasks</h1>
 	</div>
@@ -29,10 +30,10 @@
 	</div>
 	<ul id="listOfTasks">
 		<li ng-repeat="task in tasks">
-			<a href="#/taskDetails{{task._id}}">{{task.name}}</a>
-			{{task.assignedUserName}}
-			Deadline: {{task.deadline}}
-			<a class="button" ng-click="deleteTask(task._id)">Delete</a>
+			<h4><a href="#/taskDetails{{task._id}}">{{task.name}}</a></h4>
+			<h6 style="padding-left: 40px">Assigned User: {{task.assignedUserName}}</h6>
+			<h6 style="padding-left: 40px">Deadline: {{task.deadline}}</h6>
+			<a style="left: 100px" class="button" ng-click="deleteTask(task._id)">Delete</a>
 		
 		</li>
 	</ul>

@@ -1,11 +1,17 @@
 <div class= "usersMain" ng-controller="UserController">
 
-	<a class = "button" href="#/addUser">Add New User</a>
-	<ul id = "listOfUsers">
+	<h1 style="margin-left:10%">Users</h1>
+	<a id = "addUserButton" class = "button" href="#/addUser">Add New User</a>
+	<ul>
 		<li ng-repeat="user in users">
-		<a href = "#/userDetails{{user._id}}">{{user.name}}</a>
-		{{user.email}}
-		<a class="button" ng-click="deleteUser(user._id, user.name)">Delete User</a>
+
+		<div id = "UserItem" >
+			<h4><a href = "#/userDetails{{user._id}}">{{user.name}}</a></h4>
+			<h6>{{user.email}}</h6>
+		</div>
+			<a style= "margin-left:50%" class="button" ng-click="deleteUser(user._id, user.name)">Delete User</a>
+		
+
 		</li>
 		
 	</ul>
