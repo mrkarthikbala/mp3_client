@@ -1,12 +1,14 @@
 <div ng-controller= "UserDetailController">
 	<div>
-		{{user.name}}
+		<h3>{{user.name}}</h3>
+		<h3>{{user.email}}</h3>
 
-		{{user.email}}
+		<h2>Pending Tasks</h2>
 
 		<ul>
 			<li ng-repeat="task in pendingTasks">
 				<a href="#/taskDetails{{task._id}}">{{task.name}}</a>
+				Deadline: {{task.deadline}}
 				<a class = "button" ng-click="markCompleted(task._id)">Mark as Completed</a>
 			</li>
 		</ul>
@@ -15,6 +17,7 @@
 		<ul>
 			<li ng-repeat="task in completedTasks">
 				<a href="#/taskDetails{{task._id}}">{{task.name}}</a>
+				Deadline: {{task.deadline}}
 			</li>
 		</ul>
 	</div>

@@ -31,6 +31,7 @@
 		<li ng-repeat="task in tasks">
 			<a href="#/taskDetails{{task._id}}">{{task.name}}</a>
 			{{task.assignedUserName}}
+			Deadline: {{task.deadline}}
 			<a class="button" ng-click="deleteTask(task._id)">Delete</a>
 		
 		</li>

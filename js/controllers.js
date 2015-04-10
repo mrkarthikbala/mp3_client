@@ -40,7 +40,7 @@ taskManagerControllers.controller('UserController', ['$scope','$http', 'Users', 
       Users.postUser(obj).success(function(data){
       alert("User " + data.data.name  + " has been added!");
     }).error(function(data){
-      alert("Please enter a different email.");
+      alert("Please enter a different email, a user with this email already exists.");
     });
   }
 
@@ -166,14 +166,14 @@ taskManagerControllers.controller('TaskController', ['$scope', '$http','Users', 
     var order = whatToSortBy();
     if ($scope.completed ==="pending"){
       if ($scope.was == "completed" || $scope.was == "all") $scope.skip = 0;
-      return "?where={\"completed\": false}&select={\"name\": 1, \"assignedUserName\": 1 }"+ order + "&skip="+ $scope.skip + "&limit=10";
+      return "?where={\"completed\": false}&select={\"name\": 1, \"assignedUserName\": 1, \"deadline\": 1 }"+ order + "&skip="+ $scope.skip + "&limit=10";
     } 
     if ($scope.completed ==="completed"){
       if ($scope.was == "pending" || $scope.was == "all") $scope.skip = 0;
-      return "?where={\"completed\": true}&select={\"name\": 1, \"assignedUserName\": 1 }" + order + "&skip="+ $scope.skip + "&limit=10";
+      return "?where={\"completed\": true}&select={\"name\": 1, \"assignedUserName\": 1, \"deadline\": 1  }" + order + "&skip="+ $scope.skip + "&limit=10";
     }
     if ($scope.was == "pending" || $scope.was == "completed") $scope.skip = 0;
-    return "?select={\"name\": 1, \"assignedUserName\": 1 }" + order + "&skip="+ $scope.skip + "&limit=10";
+    return "?select={\"name\": 1, \"assignedUserName\": 1, \"deadline\": 1  }" + order + "&skip="+ $scope.skip + "&limit=10";
   };
 
 //ADD NEW TASK
