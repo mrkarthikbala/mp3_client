@@ -49,7 +49,7 @@ taskManagerControllers.controller('UserController', ['$scope','$http', 'Users', 
 
 
 taskManagerControllers.controller('UserDetailController', ['$scope', '$routeParams', '$http', 'Users','Tasks', function($scope, $routeParams, $http, Users,Tasks){
-
+    var alreadyLoaded = false;
     Users.getUser($routeParams.id).success(function(data){
       $scope.user = data.data;
 
@@ -76,10 +76,12 @@ taskManagerControllers.controller('UserDetailController', ['$scope', '$routePara
            user.pendingTasks.splice(i, 1);}
         }
         Users.updateUser(user);
-        $scope.loadCompletedTasks($scope.user.name);
+        if (alreadyLoaded) $scope.loadCompletedTasks($scope.user.name);
+
     };
 
     $scope.loadCompletedTasks = function(name){
+      alreadyLoaded = true;
       Tasks.getTasks("?where={\"assignedUserName\":" +"\""+ name + "\""+", \"completed\": true}").success(function(data){
         $scope.completedTasks = data.data;
       });
