@@ -12,7 +12,8 @@
 
     {{displayText}}
     <h2>Attention Grader: Could you please use my backend rather than the site's?</h2>
-      <h6>The reason is, part of my validation works with "400: Validation Errors" that I'm sending from my server in addition to 
+      <h6>There are two reasons. First, I rely on the "assignedUser" field to query the database for the user's tasks in the User Detail view. This field appears to be set in some but not all entries in the uiucwp database.  </h6>
+      <h6>The second reason is, part of my validation works with "400: Validation Errors" that I'm sending from my server in addition to 
       the requirements.</h6><h6> For example, if two users with the same email are entered, the server will respond with status code 400, and my client will display a validation error message based on that.</h6><h6> Note that there is still the separation of backend and
       frontend error messages as required in the spec, and this is an extra http code I put in the server.</h6>
       <h2>Thank you!</h2>
